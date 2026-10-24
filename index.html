@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Dhanishka Sharma Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: dark-first. Big name + live-looking request trace in the hero, metric-led project cards, one amber accent used sparingly. */
+:root {
+  --bg: #090c12;
+  --surface: #0f141d;
+  --surface-2: #151b27;
+  --ink: #edf0f6;
+  --muted: #8d97ab;
+  --line: #1f2838;
+  --accent: #ffb020;
+  --accent-ink: #1a1200;
+  --accent-text: #ffc24d;
+  --glow: rgba(255, 176, 32, 0.14);
+  --teal: #3dd6c4;
+  --grid: rgba(255, 255, 255, 0.045);
+  --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f2f4f8; --surface: #ffffff; --surface-2: #e9edf4; --ink: #0d1220; --muted: #596378; --line: #d6dce8;
+    --accent: #ffb020; --accent-ink: #1a1200; --accent-text: #9a4f00; --glow: rgba(255, 176, 32, 0.22);
+    --teal: #0c8a7c; --grid: rgba(13, 18, 32, 0.06);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f2f4f8; --surface: #ffffff; --surface-2: #e9edf4; --ink: #0d1220; --muted: #596378; --line: #d6dce8;
+  --accent: #ffb020; --accent-ink: #1a1200; --accent-text: #9a4f00; --glow: rgba(255, 176, 32, 0.22);
+  --teal: #0c8a7c; --grid: rgba(13, 18, 32, 0.06);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 17px; line-height: 1.6;
+  padding-block: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow-x: clip;
+}
+a { color: var(--accent-text); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1120px; margin: 0 auto; position: relative; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.04; letter-spacing: -0.025em; }
+.mono { font-family: var(--f-mono); }
+.label { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.label::before { content: ""; display: inline-block; width: 18px; height: 1px; background: var(--accent); vertical-align: middle; margin-right: 10px; }
+
+/* backdrop */
+.backdrop { position: absolute; inset: 0 calc(50% - 50vw) auto; height: 720px; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(600px 360px at 78% 8%, var(--glow), transparent 70%),
+    linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 56px 56px;
+  -webkit-mask-image: linear-gradient(#000 40%, transparent);
+  mask-image: linear-gradient(#000 40%, transparent); }
+.wrap > *:not(.backdrop) { position: relative; z-index: 1; }
+
+/* nav */
+nav { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: center; padding-block: 22px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+.mark { width: 34px; height: 34px; border-radius: 9px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-family: var(--f-display); font-weight: 800; font-size: 16px; letter-spacing: -0.04em; }
+nav ul { display: flex; flex-wrap: wrap; gap: 6px 22px; list-style: none; margin: 0; padding: 0; font-size: 15px; align-items: center; }
+nav a { color: var(--ink); text-decoration: none; }
+nav a:hover { color: var(--accent-text); }
+.tt { background: var(--surface); border: 1px solid var(--line); color: var(--ink); width: 36px; height: 36px; border-radius: 9px; cursor: pointer; font-size: 15px; line-height: 1; }
+.tt:hover { border-color: var(--accent); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 48px 56px; padding-block: 64px 40px; align-items: center; }
+.status { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); padding: 7px 14px; border: 1px solid var(--line); border-radius: 99px; background: var(--surface); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 4px color-mix(in srgb, var(--teal) 24%, transparent); }
+h1 { font-size: clamp(3.1rem, 9.5vw, 6.6rem); font-weight: 800; margin-top: 26px; line-height: 0.95; }
+h1 .l2 { display: block; color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
+.role { font-family: var(--f-mono); font-size: 14px; color: var(--accent-text); margin-top: 22px; letter-spacing: 0.02em; }
+.lede { max-width: 54ch; font-size: 1.12rem; color: var(--muted); margin: 14px 0 0; }
+.lede b { color: var(--ink); font-weight: 600; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 9px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--line); color: var(--ink); background: var(--surface); transition: transform .15s ease, border-color .15s ease; }
+.btn:hover { border-color: var(--accent); transform: translateY(-2px); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+/* trace card */
+.trace { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 30px 80px -40px rgba(0,0,0,.6); min-width: 0; }
+.trace-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--surface-2); font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.trace-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); display: inline-block; }
+.trace-bar span { margin-left: 8px; overflow-wrap: anywhere; }
+.trace-body { padding: 18px 18px 8px; }
+.q { font-family: var(--f-mono); font-size: 12.5px; color: var(--ink); padding: 10px 12px; border: 1px dashed var(--line); border-radius: 8px; margin-bottom: 18px; overflow-wrap: anywhere; }
+.q em { color: var(--accent-text); font-style: normal; }
+.span { display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: 12px; align-items: center; padding-block: 8px; font-family: var(--f-mono); font-size: 12px; }
+.span .nm { color: var(--muted); }
+.track { height: 20px; background: color-mix(in srgb, var(--line) 55%, transparent); border-radius: 5px; position: relative; overflow: hidden; }
+.bar { position: absolute; top: 0; bottom: 0; border-radius: 5px; background: var(--accent); transform-origin: left; }
+.bar.t { background: var(--teal); }
+.bar.d { background: repeating-linear-gradient(135deg, var(--accent) 0 6px, color-mix(in srgb, var(--accent) 45%, transparent) 6px 12px); }
+.bar.m { background: var(--ink); opacity: .85; }
+.trace-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px; padding: 12px 18px 16px; font-family: var(--f-mono); font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--line); margin-top: 8px; }
+
+/* resume snapshot card */
+.cv { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 22px 18px; box-shadow: 0 30px 80px -40px rgba(0,0,0,.6); min-width: 0; border-top: 4px solid var(--accent); }
+.cv-top { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: center; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.cv-mark { width: 46px; height: 46px; border-radius: 12px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-family: var(--f-display); font-weight: 800; font-size: 20px; letter-spacing: -0.04em; }
+.cv-name { font-family: var(--f-display); font-weight: 800; font-size: 1.35rem; line-height: 1.1; letter-spacing: -0.02em; }
+.cv-role { font-family: var(--f-mono); font-size: 12px; color: var(--accent-text); margin-top: 3px; }
+.cv-tag { font-family: var(--f-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 99px; padding: 3px 10px; }
+.cv-block { padding-block: 16px; border-bottom: 1px solid var(--line); }
+.cv-h { font-family: var(--f-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.cv-row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 15px; }
+.cv-row span { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); }
+.cv-sub { font-size: 14px; color: var(--muted); margin-top: 2px; }
+.cv-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; font-size: 14.5px; line-height: 1.45; }
+.cv-list li { padding-left: 16px; position: relative; }
+.cv-list li::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; border-radius: 2px; background: var(--accent); }
+.cv-list b { font-weight: 600; }
+.cv-list i { color: var(--accent-text); font-style: normal; font-family: var(--f-mono); font-size: 12px; }
+.cv .chips li { font-size: 13px; padding: 3px 10px; }
+.cv-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding-top: 14px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.cv-foot b { color: var(--ink); font-weight: 500; }
+
+/* stat strip */
+.strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 14px; background: var(--surface); overflow: hidden; margin-bottom: 24px; }
+.strip > div { padding: 22px 22px 20px; border-right: 1px solid var(--line); min-width: 0; }
+.strip > div:last-child { border-right: 0; }
+.strip .n { font-family: var(--f-display); font-weight: 800; font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.strip .n small { color: var(--accent-text); font-size: .55em; margin-left: 2px; }
+.strip p { margin: 8px 0 0; font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+.strip a { color: inherit; text-decoration-color: var(--accent); }
+
+/* sections */
+section { padding-block: 72px; }
+.sec-head { display: grid; gap: 14px; margin-bottom: 36px; }
+h2 { font-size: clamp(2rem, 5vw, 3.3rem); font-weight: 800; max-width: 20ch; }
+
+/* featured project */
+.feature { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); padding: clamp(20px, 4vw, 40px); position: relative; overflow: hidden; margin-bottom: 24px; }
+.feature::after { content: ""; position: absolute; width: 420px; height: 420px; right: -140px; top: -180px; background: radial-gradient(circle, var(--glow), transparent 68%); pointer-events: none; }
+.feature > * { position: relative; z-index: 1; }
+.feat-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-bottom: 18px; }
+.pill { display: inline-block; padding: 4px 11px; border-radius: 99px; border: 1px solid var(--line); font-family: var(--f-mono); font-size: 11.5px; color: var(--muted); }
+.pill.live { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.pill.done { color: var(--teal); border-color: color-mix(in srgb, var(--teal) 55%, var(--line)); }
+.feature h3 { font-size: clamp(1.9rem, 4.6vw, 3rem); font-weight: 800; max-width: 22ch; }
+.feature .sub { color: var(--muted); max-width: 60ch; margin: 14px 0 0; font-size: 1.05rem; }
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 30px; }
+.feat-grid > div { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; min-width: 0; }
+.feat-grid b { display: block; font-family: var(--f-mono); font-weight: 500; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 6px; }
+.feat-grid p { margin: 0; font-size: 15px; color: var(--ink); }
+.scroll-x { overflow-x: auto; margin-top: 26px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.scroll-x svg { display: block; min-width: 640px; width: 100%; height: auto; }
+.g-box { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.g-box.hot { fill: color-mix(in srgb, var(--accent) 12%, var(--surface)); stroke: var(--accent); }
+.g-t { font-family: var(--f-mono); font-size: 13px; fill: var(--ink); }
+.g-s { font-family: var(--f-mono); font-size: 10.5px; fill: var(--muted); }
+.g-line { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.g-loop { stroke: var(--accent); stroke-width: 1.75; fill: none; stroke-dasharray: 5 4; }
+.g-arrow { fill: var(--muted); }
+.g-arrow-a { fill: var(--accent); }
+.g-note { font-family: var(--f-mono); font-size: 11px; fill: var(--accent-text); }
+.note { margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+.tags li { font-family: var(--f-mono); font-size: 12px; padding: 4px 10px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; color: var(--ink); }
+
+/* project cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 14px; min-width: 0; transition: transform .2s ease, border-color .2s ease; }
+.card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+.card .metric { font-family: var(--f-display); font-weight: 800; font-size: clamp(3.2rem, 7vw, 4.6rem); line-height: .9; letter-spacing: -0.05em; color: var(--accent-text); font-variant-numeric: tabular-nums; }
+.card .mlabel { font-family: var(--f-mono); font-size: 12px; color: var(--muted); margin-top: -6px; }
+.card h3 { font-size: 1.55rem; font-weight: 700; }
+.card p { margin: 0; color: var(--muted); font-size: 15.5px; }
+.card ul.pts { margin: 0; padding-left: 1.1em; display: grid; gap: 7px; font-size: 15px; }
+.card ul.pts li::marker { color: var(--accent); }
+.card .tags { margin-top: 2px; }
+.card .links { margin-top: auto; padding-top: 6px; font-size: 15px; font-weight: 600; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.card.wide { grid-column: 1 / -1; }
+
+/* stack */
+.stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.stack > div { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; min-width: 0; }
+.stack h3 { font-family: var(--f-mono); font-weight: 500; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 14px; letter-spacing: .1em; }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; padding: 0; margin: 0; list-style: none; }
+.chips li { font-size: 14px; padding: 4px 11px; border-radius: 99px; background: var(--surface-2); border: 1px solid var(--line); }
+
+/* track record */
+.rec { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.rec > div { border-top: 2px solid var(--accent); padding-top: 18px; }
+.rec h3 { font-size: 1.5rem; font-weight: 700; }
+.rec p { color: var(--muted); margin: 10px 0 0; font-size: 15.5px; max-width: 40ch; }
+.edu { display: grid; gap: 0; margin-top: 56px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); overflow: hidden; }
+.edu > div { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 4px 32px; padding: 18px 22px; border-bottom: 1px solid var(--line); }
+.edu > div:last-child { border-bottom: 0; }
+.edu .when { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+.edu b { font-weight: 600; }
+.edu span.s { color: var(--muted); }
+
+/* contact */
+.contact-panel { background: var(--accent); color: var(--accent-ink); border-radius: 22px; padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 36px; align-items: end; }
+.contact-panel h2 { max-width: 14ch; }
+.contact-panel .mono { font-size: 14.5px; }
+.crow { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 4px 12px; padding-block: 10px; border-bottom: 1px solid color-mix(in srgb, var(--accent-ink) 22%, transparent); font-family: var(--f-mono); font-size: 14.5px; }
+.crow:first-child { border-top: 1px solid color-mix(in srgb, var(--accent-ink) 22%, transparent); }
+.crow span:first-child { opacity: .65; }
+.crow .v { overflow-wrap: anywhere; user-select: all; }
+.crow a { color: var(--accent-ink); font-weight: 500; }
+footer { padding-block: 30px 44px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr); padding-block: 40px 28px; }
+  .contact-panel { grid-template-columns: minmax(0, 1fr); }
+  .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .strip > div:nth-child(2) { border-right: 0; }
+  .strip > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  section { padding-block: 52px; }
+  .edu > div { grid-template-columns: minmax(0, 1fr); }
+  .span { grid-template-columns: 70px minmax(0, 1fr); gap: 8px; }
+  .card { padding: 22px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dot { animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--teal) 4%, transparent); } }
+  .bar { animation: grow .9s cubic-bezier(.2,.7,.2,1) both; }
+  .span:nth-of-type(2) .bar { animation-delay: .1s; } .span:nth-of-type(3) .bar { animation-delay: .35s; }
+  .span:nth-of-type(4) .bar { animation-delay: .6s; } .span:nth-of-type(5) .bar { animation-delay: .85s; }
+  .span:nth-of-type(6) .bar { animation-delay: 1.05s; }
+  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+}
+</style>
+
+<div class="wrap">
+  <div class="backdrop"></div>
+
+  <nav>
+    <span class="brand"><span class="mark">DS</span>dhanishka.sharma</span>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#record">Track record</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button class="tt" id="themeBtn" type="button" aria-label="Switch colour theme">◐</button></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <span class="status"><span class="dot"></span>Open to SDE and AI SDE internships · 2027 graduate</span>
+      <h1>Dhanishka <span class="l2">Sharma</span></h1>
+      <div class="role">Full-stack SDE · AI &amp; distributed systems · IIIT Kota</div>
+      <p class="lede">I ship <b>full-stack products end to end</b>: React interfaces, Node.js and FastAPI services, message queues, and LLM features that cite their sources. Final-year B.Tech student with 500+ algorithm problems behind the engineering.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See the work →</a>
+        <a class="btn" href="https://github.com/dhanishkasharma">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/dhanishkasharma/">LinkedIn</a>
+        <a class="btn" href="https://github.com/dhanishkasharma/Leetcode">LeetCode</a>
+      </div>
+    </div>
+
+    <aside class="cv" aria-label="Résumé snapshot">
+      <div class="cv-top">
+        <span class="cv-mark">DS</span>
+        <div><div class="cv-name">Dhanishka Sharma</div><div class="cv-role">Full-Stack Software Engineer</div></div>
+        <span class="cv-tag">Résumé</span>
+      </div>
+      <div class="cv-block">
+        <div class="cv-h">Education</div>
+        <div class="cv-row"><b>IIIT Kota</b><span>2023 – 2027</span></div>
+        <div class="cv-sub">B.Tech, Electronics and Communication · CGPA 7.13</div>
+      </div>
+      <div class="cv-block">
+        <div class="cv-h">Highlights</div>
+        <ul class="cv-list">
+          <li><b>Full stack.</b> Dimelo, React + Node + Socket.io chat under 50ms</li>
+          <li><b>Distributed.</b> RabbitMQ microservices, 40% lower latency</li>
+          <li><b>AI.</b> Agentic RAG with citations and self-checking <i>(building)</i></li>
+          <li><b>Contests.</b> Flipkart GRiD 8.0 national finalist, 500+ DSA problems</li>
+        </ul>
+      </div>
+      <div class="cv-block">
+        <div class="cv-h">Core stack</div>
+        <ul class="chips"><li>React</li><li>Node.js</li><li>TypeScript</li><li>FastAPI</li><li>MongoDB</li><li>Docker</li><li>LangGraph</li></ul>
+      </div>
+      <div class="cv-foot"><span>Seeking</span><b>SDE / AI SDE internship · 2027</b></div>
+    </aside>
+  </header>
+
+  <div class="strip">
+    <div><div class="n">500<small>+</small></div><p><a href="https://github.com/dhanishkasharma/Leetcode">LeetCode</a> and platform problems solved</p></div>
+    <div><div class="n">40<small>%</small></div><p>lower task-API latency with RabbitMQ events</p></div>
+    <div><div class="n">&lt;50<small>ms</small></div><p>real-time chat latency over WebSockets</p></div>
+    <div><div class="n">R3</div><p>National finalist, Flipkart GRiD 8.0</p></div>
+  </div>
+
+  <section id="projects">
+    <div class="sec-head">
+      <span class="label">Selected work</span>
+      <h2>Full-stack products I built, and the agent I’m building next</h2>
+    </div>
+
+    <article class="feature">
+      <div class="feat-top"><span class="pill live">● In progress</span><span class="pill">Python · FastAPI · LangGraph</span></div>
+      <h3>ResearchPilot, an agentic RAG research assistant</h3>
+      <p class="sub">Breaks a hard question into sub-queries, retrieves evidence, checks its own claims against the context, and answers with source citations.</p>
+
+      <div class="scroll-x">
+        <svg viewBox="0 0 700 230" role="img" aria-label="Agent loop: question goes to planner, retriever and verifier, then an answer with citations. The verifier can send the query back to the retriever up to three times.">
+          <defs>
+            <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="g-arrow"/></marker>
+            <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="g-arrow-a"/></marker>
+          </defs>
+          <rect class="g-box" x="8" y="62" width="104" height="62" rx="8"/>
+          <text class="g-t" x="60" y="88" text-anchor="middle">Question</text>
+          <text class="g-s" x="60" y="106" text-anchor="middle">multi-part</text>
+          <rect class="g-box hot" x="162" y="62" width="104" height="62" rx="8"/>
+          <text class="g-t" x="214" y="88" text-anchor="middle">Planner</text>
+          <text class="g-s" x="214" y="106" text-anchor="middle">sub-queries</text>
+          <rect class="g-box hot" x="316" y="62" width="112" height="62" rx="8"/>
+          <text class="g-t" x="372" y="88" text-anchor="middle">Retriever</text>
+          <text class="g-s" x="372" y="106" text-anchor="middle">BM25 + dense + rerank</text>
+          <rect class="g-box hot" x="478" y="62" width="104" height="62" rx="8"/>
+          <text class="g-t" x="530" y="88" text-anchor="middle">Verifier</text>
+          <text class="g-s" x="530" y="106" text-anchor="middle">claims vs context</text>
+          <rect class="g-box" x="610" y="62" width="84" height="62" rx="8"/>
+          <text class="g-t" x="652" y="88" text-anchor="middle">Answer</text>
+          <text class="g-s" x="652" y="106" text-anchor="middle">+ citations</text>
+          <path class="g-line" d="M112 93H160" marker-end="url(#a1)"/>
+          <path class="g-line" d="M266 93H314" marker-end="url(#a1)"/>
+          <path class="g-line" d="M428 93H476" marker-end="url(#a1)"/>
+          <path class="g-line" d="M582 93H608" marker-end="url(#a1)"/>
+          <path class="g-loop" d="M530 124V176H372V126" marker-end="url(#a2)"/>
+          <text class="g-note" x="451" y="198" text-anchor="middle">unsupported claim → re-retrieve (max 3)</text>
+          <text class="g-s" x="214" y="150" text-anchor="middle">tools: web search · calculator</text>
+          <text class="g-s" x="214" y="164" text-anchor="middle">doc lookup · summarizer</text>
+        </svg>
+      </div>
+
+      <div class="feat-grid">
+        <div><b>Hybrid retrieval</b><p>BM25 plus dense embeddings merged with reciprocal rank fusion, then cross-encoder reranking over 512-token chunks in ChromaDB.</p></div>
+        <div><b>Self-checking</b><p>A verifier re-retrieves when a claim is not supported by context. Loops stop after 3 iterations, so runs stay reliable and cost-bounded.</p></div>
+        <div><b>Four tools</b><p>Web search, calculator, document lookup and summarizer behind structured tool-calling schemas.</p></div>
+        <div><b>Measured choices</b><p>Fixed-size vs semantic chunking, and with vs without a reranker, scored with Ragas before the final pipeline is picked.</p></div>
+        <div><b>Serving</b><p>FastAPI with streaming responses, Redis caching and Docker Compose.</p></div>
+      </div>
+      <ul class="tags"><li>LangGraph</li><li>ChromaDB</li><li>FastAPI</li><li>Redis</li><li>Ragas</li><li>Docker</li></ul>
+      <p class="note">Under construction. The repository link and benchmark results will appear here when it ships.</p>
+    </article>
+
+    <div class="cards">
+      <article class="card">
+        <div class="feat-top" style="margin:0"><span class="pill done">Shipped</span><span class="pill">Nov 2025 – present</span></div>
+        <div><div class="metric">40%</div><div class="mlabel">lower task-processing API latency</div></div>
+        <h3>Distributed Microservices Task Infrastructure</h3>
+        <p>User, Task and Notification services that talk through queues, so one slow service does not stall the others.</p>
+        <ul class="pts">
+          <li>Each service in its own Docker container, orchestrated with Docker Compose (networking, volumes, databases).</li>
+          <li>Event-driven pipelines on RabbitMQ with fault-tolerant message handling during degradation.</li>
+          <li>Isolation boundaries and automated retries lifted availability by 25%.</li>
+        </ul>
+        <ul class="tags"><li>Node.js</li><li>Express</li><li>RabbitMQ</li><li>MongoDB</li><li>Docker</li><li>GitHub Actions</li></ul>
+        <div class="links"><a href="https://github.com/dhanishkasharma/task-microservices-workspace">Source →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="feat-top" style="margin:0"><span class="pill done">Shipped</span><span class="pill">Apr – Jun 2025</span></div>
+        <div><div class="metric">&lt;50ms</div><div class="mlabel">message latency, 1-to-1 and group chat</div></div>
+        <h3>Dimelo, real-time communication platform</h3>
+        <p>Chat over WebSockets that survives bad networks and keeps the session alive.</p>
+        <ul class="pts">
+          <li>Socket.io bidirectional streaming under concurrent load.</li>
+          <li>Stateless JWT auth, secure media handling and indexed MongoDB queries.</li>
+          <li>Zustand and Tailwind UI that improved Largest Contentful Paint by 20%.</li>
+          <li>Exponential-backoff reconnection and automatic error recovery.</li>
+        </ul>
+        <ul class="tags"><li>React</li><li>Node.js</li><li>Socket.io</li><li>MongoDB</li><li>Zustand</li><li>JWT</li></ul>
+        <div class="links"><a href="https://github.com/dhanishkasharma/Dimelo_fullstack-chat-app">Source →</a></div>
+      </article>
+
+      <article class="card wide">
+        <div class="feat-top" style="margin:0"><span class="pill done">On GitHub</span><span class="pill">TypeScript · MERN</span></div>
+        <h3>Date Crew Matchmaker</h3>
+        <p>A MERN matchmaking dashboard with explainable compatibility scoring, customer journey tracking and Gemini-powered introductions.</p>
+        <ul class="tags"><li>TypeScript</li><li>MongoDB</li><li>Express</li><li>React</li><li>Gemini API</li></ul>
+        <div class="links"><a href="https://github.com/dhanishkasharma/date-crew-matchmaker">Source →</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="sec-head">
+      <span class="label">Stack</span>
+      <h2>What I work with</h2>
+    </div>
+    <div class="stack">
+      <div><h3>Frontend</h3><ul class="chips"><li>React</li><li>Zustand</li><li>Tailwind CSS</li><li>TypeScript</li><li>HTML5</li><li>CSS3</li><li>Responsive design</li></ul></div>
+      <div><h3>Languages</h3><ul class="chips"><li>Python</li><li>C / C++</li><li>Java</li><li>JavaScript</li><li>TypeScript</li><li>SQL</li></ul></div>
+      <div><h3>LLM &amp; agents</h3><ul class="chips"><li>RAG</li><li>LangChain</li><li>LangGraph</li><li>Tool calling</li><li>Multi-agent workflows</li><li>Prompt engineering</li><li>Embeddings</li><li>Reranking</li></ul></div>
+      <div><h3>Evaluation &amp; safety</h3><ul class="chips"><li>LLM-as-judge</li><li>Ragas</li><li>Golden datasets</li><li>Red-teaming</li><li>Prompt-injection defence</li><li>PII redaction</li><li>Pydantic</li></ul></div>
+      <div><h3>Backend &amp; data</h3><ul class="chips"><li>FastAPI</li><li>Node.js</li><li>Express</li><li>REST</li><li>Microservices</li><li>RabbitMQ</li><li>Socket.io</li><li>MongoDB</li><li>MySQL</li><li>Redis</li><li>ChromaDB</li><li>FAISS</li></ul></div>
+      <div><h3>DevOps &amp; fundamentals</h3><ul class="chips"><li>Docker</li><li>Docker Compose</li><li>GitHub Actions</li><li>CI/CD</li><li>Git</li><li>Linux</li><li>DSA</li><li>OOD</li><li>OS</li><li>DBMS</li><li>System design</li></ul></div>
+    </div>
+  </section>
+
+  <section id="record">
+    <div class="sec-head">
+      <span class="label">Track record</span>
+      <h2>Beyond the repositories</h2>
+    </div>
+    <div class="rec">
+      <div><h3>Flipkart GRiD 8.0, national finalist</h3><p>Reached Round 3, selected among top engineering teams nationwide for algorithmic problem solving and distributed-system evaluation.</p></div>
+      <div><h3>500+ problems solved</h3><p>LeetCode and other platforms, with the most depth in Dynamic Programming, Graph Algorithms and Trees. <a href="https://github.com/dhanishkasharma/Leetcode">Solutions on GitHub →</a></p></div>
+      <div><h3>Led Odyssey, IIIT Kota’s tech fest</h3><p>Lead Event Organizer since Sep 2024. A 30+ member volunteer team, 100+ participants and 30% year-on-year engagement growth.</p></div>
+    </div>
+
+    <div class="edu">
+      <div><span class="when">Aug 2023 – May 2027</span><div><b>Indian Institute of Information Technology, Kota</b><br><span class="s">B.Tech, Electronics and Communication Engineering · CGPA 7.13</span></div></div>
+      <div><span class="when">Class XII</span><div><b>NK Public School, Rajawas, Jaipur</b><br><span class="s">95.60%</span></div></div>
+      <div><span class="when">Class X</span><div><b>Shivaji Public School, Chomu</b><br><span class="s">92.80%</span></div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-panel">
+      <h2>Hiring for an SDE or AI internship? Let’s talk.</h2>
+      <div>
+        <div class="crow"><span>email</span><span class="v">dhanishkasharma400@gmail.com</span></div>
+        <div class="crow"><span>phone</span><span class="v">+91 8824636912</span></div>
+        <div class="crow"><span>linkedin</span><a href="https://www.linkedin.com/in/dhanishkasharma/">linkedin.com/in/dhanishkasharma</a></div>
+        <div class="crow"><span>github</span><a href="https://github.com/dhanishkasharma">github.com/dhanishkasharma</a></div>
+        <div class="crow"><span>leetcode</span><a href="https://github.com/dhanishkasharma/Leetcode">solutions repository</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer><span>Dhanishka Sharma · IIIT Kota · Jaipur, Rajasthan</span><span>Available for 2027 internships</span></footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('themeBtn');
+  var root = document.documentElement;
+  try { var saved = localStorage.getItem('ds-theme'); if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved); } catch (e) {}
+  btn.addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme');
+    if (!cur) cur = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+    var next = cur === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('ds-theme', next); } catch (e) {}
+  });
+})();
+</script>
+
+</html>
